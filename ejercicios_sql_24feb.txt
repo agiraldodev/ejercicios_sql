@@ -1,0 +1,36 @@
+CREATE TABLE carreras (
+    idCarrera INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+CREATE TABLE estudiantes (
+    idEstudiante INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    edad INT,
+    carrera_id INT,
+    FOREIGN KEY (carrera_id) REFERENCES carreras(idCarrera)
+);
+
+INSERT INTO carreras (nombre) VALUES
+    ('Ingeniería Electrónica'),
+    ('Ingeniería de Sistemas'),
+    ('Sistemas');
+
+INSERT INTO estudiantes (nombre, edad, carrera_id) VALUES 
+    ('stiven', 19, 1),
+    ('victor', 14, 2),
+    ('Lady', 16, 3),
+    ('Julián', 16, 3),
+    ('Andres', 20, 2);
+
+--ALTER TABLE estudiantes ADD COLUMN estrato INT(10) DEFAULT NULL;
+
+--UPDATE estudiantes SET estrato = 1;
+
+--DELETE FROM estudiantes WHERE nombre = 'Andres';
+
+SELECT * FROM carreras;
+
+SELECT * FROM estudiantes;
+
+SELECT estudiantes.idEstudiante, estudiantes.nombre, estudiantes.edad, carreras.nombre AS nombre_carrera FROM estudiantes JOIN carreras ON estudiantes.idCarrera = carreras.id;
